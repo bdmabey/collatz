@@ -1,0 +1,23 @@
+name: Collatz CLI
+version: "0.0.1"
+author: Braden Mabey <braden.mabey@gmail.com>
+about: Given parameters produces Collatz images.
+args:
+    - branches:
+          help: Sets the limit of branches to go to.
+          short: b
+          long: branches
+          takes_value: true
+          required: true
+    - deviation:
+          help: Limits the number of times each branch can spawn a new branch.
+          short: d
+          long: deviation
+          takes_value: true
+          required: true
+    - limit:
+          help: Limits the number of numbers per branch.
+          short: l
+          long: limit
+          takes_value: true
+          required: true
