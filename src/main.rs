@@ -18,7 +18,7 @@ fn main() {
         linked_branches: vec![]
     };
 
-    test.numbers = collatz_cli::collatz::create_branch_numbers(limit, test.spawn_number as i32);
+    test.numbers = collatz_cli::collatz::Branch::create_branch_numbers(limit, test.spawn_number as i32);
 
     let alternate = collatz_cli::collatz::check_for_branch(test.numbers);
 
