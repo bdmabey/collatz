@@ -9,7 +9,7 @@ pub mod collatz {
     }
 
     impl Branch {
-        pub fn create_branch_numbers(limit: i32, coefficient: i32) -> Vec<u64> {
+        pub fn create_branch_numbers(&self, limit: i32, coefficient: i32) -> Vec<u64> {
             let mut result: Vec<u64> = Vec::new();
             let start: u64 = 2;
             for i in 0..limit {
@@ -18,7 +18,7 @@ pub mod collatz {
             return result;
         }
 
-        pub fn check_for_branch(numbers: Vec<u64>) -> Vec<Branch>{
+        pub fn check_for_branch(&self, numbers: &Vec<u64>) -> Vec<Branch>{
             let mut new_branches: Vec<Branch> = Vec::new();
             for x in 0..numbers.len() {
                 let result = ((numbers[x] as f64) - 1.0) / 3.0;
@@ -30,8 +30,8 @@ pub mod collatz {
                     let branch = Branch {
                         spawn_number: numbers[x],
                         branch_number: 0,
-                        deviation: 0,
-                        limit: 0,
+                        deviation: self.deviation,
+                        limit: self.limit,
                         numbers: vec![],
                         linked_branches: vec![]
                     };
