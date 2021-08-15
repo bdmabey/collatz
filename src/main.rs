@@ -11,14 +11,15 @@ fn main() {
 
     let mut test = collatz_cli::collatz::Branch {
         spawn_number: 1,
-        branch_number: 1,
+        start_number: 1,
+        max_branches: branch,
         deviation,
         limit,
         numbers: vec![],
-        linked_branches: vec![]
     };
 
-    test.numbers = test.create_branch_numbers(test.deviation, test.spawn_number as i32);
+    test.numbers = test.create_branch_numbers(test.limit, test.spawn_number as i32);
 
     let alternate = test.check_for_branch(&test.numbers);
+    println!("{}", alternate[0].limit)
 }
