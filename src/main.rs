@@ -1,5 +1,6 @@
 use clap::{App, load_yaml};
 use collatz_cli::arg;
+use collatz_cli::collatz::Branch;
 
 fn main() {
     let yaml = load_yaml!("cli.yaml");
@@ -13,13 +14,12 @@ fn main() {
         spawn_number: 1,
         start_number: 1,
         deviation,
-        counter: 0,
         limit,
         numbers: vec![],
     };
 
     initial_branch.numbers = initial_branch.create_branch_numbers(limit, 1);
 
-    let alternate = initial_branch.check_for_branch(&initial_branch.numbers, branch);
-    println!("{:?}", alternate[0].counter)
+    let alternate: Vec<Branch> = initial_branch.check_for_branch(&initial_branch.numbers);
+    println!("{}", alternate.len())
 }

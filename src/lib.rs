@@ -1,8 +1,8 @@
 pub mod collatz {
+
     pub struct Branch {
         pub spawn_number: u64,
         pub start_number: u64,
-        pub counter: i32,
         pub deviation: i32,
         pub limit: i32,
         pub numbers: Vec<u64>,
@@ -19,10 +19,8 @@ pub mod collatz {
             return result;
         }
 
-        pub fn check_for_branch(&self, numbers: &Vec<u64>, max_branches: i32) -> Vec<Branch>{
+        pub fn check_for_branch(&self, numbers: &Vec<u64>) -> Vec<Branch>{
             let mut new_branches: Vec<Branch> = Vec::new();
-            let mut counter = 1;
-            while counter != max_branches {
                 for x in 0..numbers.len() {
                     let result = ((numbers[x] as f64) - 1.0) / 3.0;
                     let result_str = result.to_string();
@@ -33,7 +31,6 @@ pub mod collatz {
                         let branch = Branch {
                             spawn_number: numbers[x],
                             start_number: result as u64,
-                            counter,
                             deviation: self.deviation,
                             limit: self.limit,
                             numbers: self.create_branch_numbers(self.limit, result as i32)
@@ -41,8 +38,6 @@ pub mod collatz {
                         new_branches.push(branch);
                     }
                 }
-                counter = counter + 1;
-            }
             return new_branches;
         }
     }
